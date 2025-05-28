@@ -68,7 +68,8 @@ openssl req -new -key user1.key -out user1.csr -subj "/CN=user1/O=devs"
     kubectl config get-contexts
     kubectl config use-context user1_context
     ```
-    - ![Скриншот](image_1.jpg)
+-
+![Скриншот](image_1.jpg)
     
 2. 
   - Средствами **kubernetes**
@@ -136,7 +137,8 @@ openssl req -new -key user1.key -out user1.csr -subj "/CN=user1/O=devs"
     - [Скриншот создания и подписания сертификата](image_1.jpg)
     - [role.yaml](role.yaml)
     - [rolebinding.yaml](rolebinding.yaml)
-    - ![Скриншот работы RBAC](image_2.JPG)
+    -
+![Скриншот работы RBAC](image_2.JPG)
 ------
 
 ### Правила приёма работы
