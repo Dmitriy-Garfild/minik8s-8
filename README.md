@@ -44,20 +44,11 @@ openssl req -new -key user1.key -out user1.csr -subj "/CN=user1/O=devs"
 ```
 
 
-- Необходимо иметь доступ к CA сертификату и закрытому ключу от кластера **Kubernetes**. В случаее с **microk8s** они лежат в `/var/snap/microk8s/current/certs/`, в **kubernetes** обычно в `/etc/kubernetes/pki`. Нем необходим `ca.key` и `ca.crt`
-  ```sh
-  # Для microk8s
-  ssh <адрес ноды microk8s>
-  cat /var/snap/microk8s/current/certs/ca.key
-  cat /var/snap/microk8s/current/certs/ca.crt
-  ```
-  - Скопировали данные и выполняем выпуск сертификата, который будет подписан ключом и CA сертом кластера microk8s
+  - Выполняем выпуск сертификата, который будет подписан ключом и CA сертом кластера microk8s
   ```sh
   openssl x509 -req -in user1.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out user1.crt -days 3
   ```
-  *Срок действия сертификата = 3 дня*
 
-  *`CAcreateserial` отвечает за создание файла `.srl` , в котором будет храниться серийный номер для следующего подписываемого этим сертификатом запроса*
 
   - Добавляем нового пользователя в конфиг **kubectl**
   ```sh
